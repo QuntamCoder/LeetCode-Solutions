@@ -1,3 +1,4 @@
+package Easy;
 public class MonotonicArray {
     public boolean isMonotonic(int[] nums) {
         boolean increasing=true;
@@ -15,7 +16,7 @@ public class MonotonicArray {
 
     public static void main(String[] args) {
             MonotonicArray aa=new MonotonicArray();
-            int arr[]={1,2,3,4,5};
+            int arr[]={1,2,3,6,5};
             System.out.println(aa.isMonotonic(arr));
     }
 }

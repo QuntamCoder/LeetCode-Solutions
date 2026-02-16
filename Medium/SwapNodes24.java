@@ -10,8 +10,8 @@ package Medium;
 }
 public class SwapNodes24 {
 
-    void   swpaNode(Node head){
-        // if(head==null ||head.next==null){
+     void   swpaNode(Node head){
+        // if(head==null ){
             
         //     head;
         // }
