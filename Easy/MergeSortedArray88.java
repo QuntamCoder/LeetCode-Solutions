@@ -4,13 +4,29 @@ import java.util.Arrays;
 
 public class MergeSortedArray88 {
 public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int j=0;
-         for (int i = m; i < m+n; i++) {
-            nums1[i]=nums2[j++];
+      //   int j=0;
+      //    for (int i = m; i < m+n; i++) {
+      //       nums1[i]=nums2[j++];
             
+      //    } 
+      //    Arrays.sort(nums1);
+
+      int temp=0;
+      int j=0;
+      for (int i = 0; i < m+n; i++) {
+         if(temp!=0){
+            nums1[i]=temp;
+            temp=0;
+         }
+         if(nums1[i]>nums2[j]){
+           temp=nums1[i];
+           nums1[i]=nums2[j++];
+         }
+         if (nums1[i]==0) {
+            nums1[i]=nums2[j++];
          }
          
-         Arrays.sort(nums1);
+      }
          for (int i = 0; i < nums1.length; i++) {
             System.out.println(nums1[i]);
          }
