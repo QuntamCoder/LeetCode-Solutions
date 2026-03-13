@@ -3,6 +3,7 @@ package Easy;
 public class checkOnesSegment {
    public static boolean checkOneSeg(String str) {
         boolean flag = false;
+        if(str.length()==1 && str.charAt(0)=='1') return true;
         for (int i = 0; i < str.length()-1; i++) {
             char ch = str.charAt(i);
             char ch1 = str.charAt(i + 1);
