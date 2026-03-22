@@ -1,48 +1,57 @@
 package Hard;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Fancy {
- List<Integer> list;
-  public Fancy() {
-        list=new ArrayList<>();
+
+    List<Long> list;
+    long mul = 1;
+    long add = 0;
+    long mod = 1000000007;
+
+    public Fancy() {
+        list = new ArrayList<>();
     }
-    
+
     public void append(int val) {
-        list.add(val);
+        long x = (val - add + mod) % mod;
+        x = (x * modInverse(mul)) % mod;
+        list.add(x);
     }
-    
+
     public void addAll(int inc) {
-        for (int i = 0; i < list.size(); i++) {
-           list.set(i, list.get(i) + inc);
-        }
+        add = (add + inc) % mod;
     }
-    
+
     public void multAll(int m) {
-        for (int i = 0; i < list.size(); i++) {
-             list.set(i, list.get(i) * m);
-        }
+        mul = (mul * m) % mod;
+        add = (add * m) % mod;
     }
-    
+
     public int getIndex(int idx) {
-        return list.get(idx);
+        if (idx >= list.size()) return -1;
+
+        long val = list.get(idx);
+        val = (val * mul + add) % mod;
+        return (int) val;
     }
 
+    private long modInverse(long x) {
+        return power(x, mod - 2);
+    }
 
-    public static void main(String[] args) {
-       Fancy fancy = new Fancy();
-fancy.append(2);   // fancy sequence: [2]
-fancy.addAll(3);   // fancy sequence: [2+3] -> [5]
-fancy.append(7);   // fancy sequence: [5, 7]
-fancy.multAll(2);  // fancy sequence: [5*2, 7*2] -> [10, 14]
-fancy.getIndex(0); // return 10
-fancy.addAll(3);   // fancy sequence: [10+3, 14+3] -> [13, 17]
-fancy.append(10);  // fancy sequence: [13, 17, 10]
-fancy.multAll(2);  // fancy sequence: [13*2, 17*2, 10*2] -> [26, 34, 20]
-fancy.getIndex(0); // return 26
-fancy.getIndex(1); // return 34
-fancy.getIndex(2); // return 20
- 
-}
+    private long power(long a, long b) {
+        long res = 1;
+        a %= mod;
+
+        while (b > 0) {
+            if ((b & 1) == 1)
+                res = (res * a) % mod;
+
+            a = (a * a) % mod;
+            b >>= 1;
+        }
+
+        return res;
+    }
 }
