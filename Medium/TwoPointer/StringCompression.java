@@ -11,16 +11,13 @@ public class StringCompression {
         HashMap<Character, Integer> map = new HashMap<>();
         StringBuilder str = new StringBuilder();
         for (char c : chars) {
-            if (map.containsKey(c)) {
+          
                 map.put(c, map.getOrDefault(c, 0) + 1);
-            }
-            map.put(c, 1);
-        }
+           
         for (Map.Entry<Character, Integer> set : map.entrySet()) {
-            if (set.getValue() == 1) {
+            
                 str.append(set.getKey());
-            } else {
-                str.append(set.getKey());
+            if(set.getValue()>1)
                 str.append(set.getValue());
             }
         }
